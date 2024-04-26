@@ -15,26 +15,28 @@ async function findKey(url) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json(); 
+        const data = await response.json();
         console.log("Got Keys ", data.keys[0])
-        return data.keys[0]; 
+        return data.keys[0];
     } catch (error) {
         throw new Error('Error:', error);
     }
 }
 
 app.get('/', function (req, res) {
-  res.send('Hello World')
+    res.send('Hello World')
 })
 
 app.get('/pw', async function (req, res) {
     const videoUrl = req.query.videourl;
     const data = await findKey(videoUrl);
-  res.send(data)
+    res.send(data)
 })
 
 // keyFinder.js
 
 
-
-app.listen(3000)
+const PORT = process.env.PORT || 5000; 
+app.listen(PORT, () => { 
+    console.log(`Server is running on port ${PORT}`); 
+});
