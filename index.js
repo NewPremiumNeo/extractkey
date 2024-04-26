@@ -1,5 +1,7 @@
 import express from 'express'
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express()
 
@@ -36,7 +38,8 @@ app.get('/pw', async function (req, res) {
 // keyFinder.js
 
 
-const PORT = process.env.PORT || 5000; 
-app.listen(PORT, () => { 
-    console.log(`Server is running on port ${PORT}`); 
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => { 
+    console.log(`Server is running on port ${port}`); 
 });
